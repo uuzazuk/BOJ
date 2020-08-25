@@ -1,0 +1,56 @@
+// https://www.welcomekakao.com/learn/courses/30/lessons/42576?language=cpp
+
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+const int None = 0;
+const int MATCHED = 1;
+const int NOT_MATCHED = 2;
+
+
+string solution(vector<string> participant, vector<string> completion) {
+    string answer = "";
+    
+    sort(participant.begin(), participant.end());
+    sort(completion.begin(), completion.end());
+
+    int idxL = 0;
+    int idxR = completion.size() - 1;
+    int searchType = None;
+    
+    while (true) {
+        int idxM = (idxL + idxR) / 2;
+
+        if (participant[idxM] == completion[idxM]) {
+            if (searchType == None) {
+                searchType = NOT_MATCHED;
+            } else if (searchType == MATCHED) {
+                answer = participant[idxM + 1];
+                break;
+            } else if (searchType == NOT_MATCHED) {
+                if (idxM == completion.size()) {
+                    answer = participant[idxM + 1];
+                    break;
+
+                }
+            }
+            idxL = idxM + 1;
+
+        } else {
+            if (searchType == None) {
+                searchType = MATCHED;
+            } else if (searchType == NOT_MATCHED) {
+                answer = participant[idxM];
+                break;
+            }
+            idxR = idxM - 1;
+        }
+    }
+
+    std::cout << answer << std::endl;
+    return answer;
+}
