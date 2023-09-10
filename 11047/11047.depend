@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1694324192 source:c:\01.project\github\boj\11047\main.cpp
+	<cassert>
+	<vector>
+	<cstdio>
+	<map>
+	<set>
+	<cstring>
+	<cstring>
+	<memory>
+	<algorithm>
+	<string>
+	<iostream>
+	<queue>
+	<ctime>
+
